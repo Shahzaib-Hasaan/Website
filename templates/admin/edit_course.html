@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+
+{% block admin_content %}
+<h2>Edit Course</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Course Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ course.title }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Course Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required>{{ course.description }}</textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="lecture_link" class="form-label">Lecture Link</label>
+                <input type="url" class="form-control" id="lecture_link" name="lecture_link" value="{{ course.lecture_link }}">
+                <div class="form-text">Optional: Add a link to the course lecture</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Update Course</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

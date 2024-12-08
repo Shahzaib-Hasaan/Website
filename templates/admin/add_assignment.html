@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+
+{% block admin_content %}
+<h2>Add New Assignment</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Assignment Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Assignment Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="course_id" class="form-label">Course</label>
+                <select class="form-control" id="course_id" name="course_id" required>
+                    <option value="">Select a course</option>
+                    {% for course in courses %}
+                    <option value="{{ course.id }}">{{ course.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label for="due_date" class="form-label">Due Date</label>
+                <input type="datetime-local" class="form-control" id="due_date" name="due_date" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add Assignment</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

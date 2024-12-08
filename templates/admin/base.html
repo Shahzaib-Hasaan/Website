@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="list-group mb-4">
+            <a href="{{ url_for('admin_dashboard') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+                Dashboard
+            </a>
+            <a href="{{ url_for('admin_add_course') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'admin_add_course' %}active{% endif %}">
+                Add Course
+            </a>
+            <a href="{{ url_for('admin_add_assignment') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'admin_add_assignment' %}active{% endif %}">
+                Add Assignment
+            </a>
+            <a href="{{ url_for('admin_users') }}" class="list-group-item list-group-item-action {% if request.endpoint == 'admin_users' %}active{% endif %}">
+                Manage Users
+            </a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        {% block admin_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Welcome to Python Course LMS</h1>
+    <p class="lead">Your gateway to learning Python programming</p>
+    
+    {% if not current_user.is_authenticated %}
+    <div class="mt-4">
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg mx-2">Register Now</a>
+        <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg mx-2">Login</a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Structured Learning</h5>
+                <p class="card-text">Access organized course materials and lectures for a systematic learning experience.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Interactive Assignments</h5>
+                <p class="card-text">Submit assignments and get feedback to enhance your learning journey.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Track Progress</h5>
+                <p class="card-text">Monitor your progress through the course with our comprehensive dashboard.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

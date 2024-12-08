@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h1>{{ course.title }}</h1>
+    <p class="lead">{{ course.description }}</p>
+    
+    {% if course.lecture_link %}
+    <div class="mb-3">
+        <h3>Lecture</h3>
+        <a href="{{ course.lecture_link }}" class="btn btn-primary" target="_blank">View Lecture</a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="assignments">
+    <h3>Assignments</h3>
+    {% if assignments %}
+        {% for assignment in assignments %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ assignment.title }}</h5>
+                <p class="card-text">{{ assignment.description }}</p>
+                <p class="text-muted">Due: {{ assignment.due_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                
+                {% if assignment.submission %}
+                    <p class="text-success">Submitted</p>
+                {% else %}
+                    <form action="{{ url_for('submit_assignment', assignment_id=assignment.id) }}" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input type="file" class="form-control" name="file" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Assignment</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">No assignments available for this course.</div>
+    {% endif %}
+</div>
+{% endblock %}
